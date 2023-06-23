@@ -4,6 +4,12 @@ import 'package:flutter/services.dart';
 import './view/screens/commit_list_screen.dart';
 
 void main() {
+    WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WindowManager.instance.setMinimumSize(Size(480, 600));
+    });
+  }
   runApp(
     const MyApp(),
   );
